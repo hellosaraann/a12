@@ -32,6 +32,29 @@ const favoriteHousePlants = [{
   plantPic: 'images/zz-plant.jpg'
 }];
 
+//vue component
+
+Vue.component ( 'collection-entry', {
+	props: [
+		'plants', 'plantPic', 'name', 'light', 'leaves', 'special'
+	],
+	template: `
+			<div  class="container"
+						v-for='(plant, index) in plants'
+						v-bind:class='{
+							odd: (index+1) % 2 !== 0,
+							favoritePlant: specialThing.toLowerCase().includes("favorite")
+						}'>
+					<p class='item small photo'>
+						<img v-bind:src='plantPic' />
+					</p>
+					<p class='item small plant-name'>{{ name }}</p>
+					<p class='item small'>{{ light }}</p>
+					<p class='item small'>{{ leaves }}</p>
+					<p class='item small'>{{ specialThing }}</p>
+			</div>
+	`
+});
 
 //vue var
 
@@ -45,16 +68,17 @@ var vm = new Vue({
 		leavesInput: '',
 		specialInput: ''
   },
-	methods: {
-		deletePlant: function(plantObject) {
-			this.plants = this.plants.filter( function(plant) {
-				if (plant.name !== plantObject.name) {
-					return true;
-				} else {
-					return false;
-				}
-			})
-		},
+methods: {
+	// TAKING OUT DELETE PLANT FUNCTION FOR THIS WEEK
+	// 	deletePlant: function(plantObject) {
+	// 		this.plants = this.plants.filter( function(plant) {
+	// 			if (plant.name !== plantObject.name) {
+	// 				return true;
+	// 			} else {
+	// 				return false;
+	// 			}
+	// 		})
+	// 	},
 		addPlant: function(){
 			let newPlant = {
 				plantPic: this.plantPicInput,

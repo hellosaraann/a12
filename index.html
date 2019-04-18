@@ -20,25 +20,16 @@
         <h2 class="item small list-headers">Light</h2>
         <h2 class="item small list-headers">Leaves</h2>
         <h2 class="item small list-headers">Special</h2>
-        <h2 class="item small list-headers">Edit</h2>
       </div>
-      <div  class="container"
-            v-for='(plant, index) in plants'
-            v-bind:class='{
-              odd: (index+1) % 2 !== 0,
-              favoritePlant: plant.specialThing.toLowerCase().includes("favorite")
-            }'>
-          <p class='item small photo'>
-            <img v-bind:src='plant.plantPic' />
-          </p>
-          <p class='item small plant-name'>{{ plant.name }}</p>
-          <p class='item small'>{{ plant.light }}</p>
-          <p class='item small'>{{ plant.leaves }}</p>
-          <p class='item small'>{{ plant.specialThing }}</p>
-          <div class='item small'>
-            <button type='button' v-on:click='deletePlant(plant)'>Delete</button>
-          </div>
-      </div>
+
+      <collection-entry
+        v-for='plant in plants'
+        v-bind:plant-pic='plant.plantPic'
+        v-bind:name='plant.name'
+        v-bind:light='plant.light'
+        v-bind:leaves='plant.leaves'
+        v-bind:special-thing='plant.specialThing'
+      ></collection-entry>
 
       <div class='container'>
         <h2 class='item list-title'>Add a Plant</h2>
