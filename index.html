@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+
+    <title>My Favorite Houseplants</title>
+  </head>
+  <body>
+    <div id="myCollection" class='table' v-block>
+      <div class='container'>
+        <h1 class='item list-title'>
+          A Few Favorite <br />
+          <span class='special'>Houseplants</span>
+        </h1>
+      </div>
+      <div class="container">
+        <h2 class="item small list-headers">Photo</h2>
+        <h2 class="item small list-headers">Name</h2>
+        <h2 class="item small list-headers">Light</h2>
+        <h2 class="item small list-headers">Leaves</h2>
+        <h2 class="item small list-headers">Special</h2>
+        <h2 class="item small list-headers">Edit</h2>
+      </div>
+      <div  class="container"
+            v-for='(plant, index) in plants'
+            v-bind:class='{
+              odd: (index+1) % 2 !== 0,
+              favoritePlant: plant.specialThing.toLowerCase().includes("favorite")
+            }'>
+          <p class='item small photo'>
+            <img v-bind:src='plant.plantPic' />
+          </p>
+          <p class='item small plant-name'>{{ plant.name }}</p>
+          <p class='item small'>{{ plant.light }}</p>
+          <p class='item small'>{{ plant.leaves }}</p>
+          <p class='item small'>{{ plant.specialThing }}</p>
+          <div class='item small'>
+            <button type='button' v-on:click='deletePlant(plant)'>Delete</button>
+          </div>
+      </div>
+
+      <div class='container'>
+        <h2 class='item list-title'>Add a Plant</h2>
+      </div>
+
+      <div class='container'>
+        <form v-on:submit.prevent='addPlant'>
+          <p class='item small photo'>
+            <label>Photo<input type='file' v-model='plantPicInput' /></label>
+          </p>
+          <p class='item small plant-name'>
+            <label>Plant Name<input type='text' v-model='nameInput' /></label>
+          </p>
+          <p class='item small'>
+            <label>Light Needs<input type='text' v-model='lightInput' /></label>
+          </p>
+          <p class='item small'>
+            <label>Plant Leaves<input type='text' v-model='leavesInput' /></label>
+          </p>
+          <p class='item small'>
+            <label>Special Notes<input type='text' v-model='specialInput' /></label>
+          </p>
+          <div class='item small'>
+            <button type='submit' v-on:click='addPlant(plant)'>Add</button>
+          </div>
+        </form>
+      </div>
+
+      <div class='container footer'>
+        <div class="item">
+          <div class='favoritePlant key'></div>
+          <p class='key'>= favorite.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
