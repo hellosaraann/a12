@@ -23,12 +23,15 @@
       </div>
 
       <collection-entry
-        v-for='plant in plants'
+        v-for='(plant, index) in plants'
         v-bind:plant-pic='plant.plantPic'
         v-bind:name='plant.name'
         v-bind:light='plant.light'
         v-bind:leaves='plant.leaves'
         v-bind:special-thing='plant.specialThing'
+        v-bind:class='{
+          odd: (index+1) % 2 !== 0,
+          favorite: plant.specialThing.toLowerCase().includes("favorite")}'
       ></collection-entry>
 
       <div class='container'>

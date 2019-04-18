@@ -36,15 +36,10 @@ const favoriteHousePlants = [{
 
 Vue.component ( 'collection-entry', {
 	props: [
-		'plants', 'plantPic', 'name', 'light', 'leaves', 'special'
+		'plants', 'plantPic', 'name', 'light', 'leaves', 'specialThing'
 	],
 	template: `
-			<div  class="container"
-						v-for='(plant, index) in plants'
-						v-bind:class='{
-							odd: (index+1) % 2 !== 0,
-							favoritePlant: specialThing.toLowerCase().includes("favorite")
-						}'>
+			<div class="container">
 					<p class='item small photo'>
 						<img v-bind:src='plantPic' />
 					</p>
